@@ -40,6 +40,22 @@
 </formm>
 </div>
 </nav>
+
+<style type = "text/css">
+  .jumbotron {
+   
+   background-image: url('images/loveearth.png');
+   background-repeat : no-repeat;
+   background-size: 40% 100%;
+   background-position : center;
+   
+
+   text-shadow: #c1ffcc 0.2em 0.2em 0.2em;
+   color : #008000;
+ }
+</style>
+ <div class = "jumbotron" >
+
 <section class="container mt-3" style="max-width: 540px;">
  <form method="post" action="./e_saleLoginAction.jsp">
   <div class="form-group">
@@ -53,7 +69,7 @@
  <button type="submit" class="btn btn-primary">전기차입차</button>
  </form>
 </section>
- 
+ </div>
  
 
  <footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">

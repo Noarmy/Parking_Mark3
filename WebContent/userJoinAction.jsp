@@ -49,10 +49,11 @@ if(result == 1) {
 }
 
 
-int result1 = parkDAO.join(car_num);
+int result1 = parkDAO.join(car_num,0);
 
 
 if(result1 == 1) {
+	
 	PrintWriter script = response.getWriter();
 	script.println("<script>");
 	script.println("alert('원하는곳에 주차를하세요');");

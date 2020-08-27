@@ -6,6 +6,8 @@ public class E_saleDTO {
 	private String name;
 	private String e_mail;
 	private String e_mailHash;
+	
+	
 	public String getE_mailHash() {
 		return e_mailHash;
 	}

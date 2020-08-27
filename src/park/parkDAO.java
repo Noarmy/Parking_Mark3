@@ -15,8 +15,8 @@ public class parkDAO {
 	
 	
 	//입차
-	public int join(String car_num) {
-		String SQL = "INSERT INTO park (car_num) VALUES (?)";
+	public int join(String car_num,int payed) {
+		String SQL = "INSERT INTO park (car_num,payed) VALUES (?,?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
@@ -25,6 +25,7 @@ public class parkDAO {
 			conn = DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, car_num);
+			pstmt.setInt(2, payed);
 			return pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -58,10 +59,36 @@ public class parkDAO {
 			
 			return -1;
 		}
+		
+		//출차중복확인
+				public int outcheck(String car_num) {
+					String SQL = "SELECT payed FROM park WHERE car_num = ? and out_time is null";
+					Connection conn = null;
+					PreparedStatement pstmt = null;
+					ResultSet rs = null;
+					
+				
+					try {
+						conn = DatabaseUtil.getConnection();
+						pstmt = conn.prepareStatement(SQL);
+						pstmt.setString(1, car_num);
+					    rs = pstmt.executeQuery();
+						
+					    if(rs.next()) {
+					    	return rs.getInt(1);
+					    }
+						return -1;
+						
+					} catch(Exception e) {
+						e.printStackTrace();
+					} 
+					
+					return -1;
+				}	
 	
 	//출차시간바꾸기
 	public int out(String car_num) {
-		String SQL = "UPDATE park SET out_time = current_time WHERE car_num = ?";
+		String SQL = "UPDATE park SET out_time = NOW() WHERE car_num = ? ORDER BY in_time desc limit 1;";
 		
 		try {
 			Connection conn = DatabaseUtil.getConnection();
@@ -73,6 +100,23 @@ public class parkDAO {
 		}
 		return -1;
 	}
+	
+	//출차되면 1값 보내기
+	
+	public int outstring(String car_num) {
+		String SQL = "UPDATE park SET payed = 1 WHERE car_num = ?";
+		
+		try {
+			Connection conn = DatabaseUtil.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, car_num);
+			return pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
 	
 	// 데이터베이스 시간을 변수에 담기
 	ResultSet rs = null;
@@ -121,10 +165,6 @@ public class parkDAO {
 		}
 		return -1;
 	}
-	
-	
-
-
 	
 	
 

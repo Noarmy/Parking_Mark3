@@ -7,8 +7,15 @@ public class parkDTO {
 	String car_num;
 	String in_time;
 	String out_time;
+	String payed;
 	
 	
+	public String getPayed() {
+		return payed;
+	}
+	public void setPayed(String payed) {
+		this.payed = payed;
+	}
 	public String getCar_num() {
 		return car_num;
 	}

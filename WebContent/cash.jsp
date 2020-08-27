@@ -1,11 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import = "java.io.PrintWriter" %>
-<%@ page import = "e_sale.E_saleDAO" %>   
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="park.parkDTO"%>
+<%@ page import="park.parkDAO"%>
+<%@ page import="java.io.PrintWriter"%>
+
+
 
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <meta charset="UTF-8" http-equiv="Content-Type" content="text/html">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>PARK_Mark_Three</title>
@@ -13,16 +16,15 @@
 <link rel = "stylesheet" href="./css/bootstrap.min.css">
 <!-- 커스텀 css 추가 -->
 <link rel = "stylesheet" href="./css/custom.css">
-   
 </head>
 <body>
-<% String e_car_num = null;
+ <% String e_car_num = null;
    if(session.getAttribute("e_car_num") != null) {
 	   e_car_num = (String) session.getAttribute("e_car_num");
    }
 %>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-<a class="navbar-brand" href="welcome.jsp">주차장Mark.3</a>
+<a class="navbar-brand" href="index.jsp">주차장Mark.3</a>
 <button class ="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
 <span class="navbar-toggler-icon"></span>
 </button>
@@ -59,47 +61,31 @@
 </div>
 </nav>
 
-<style type = "text/css">
-  .jumbotron {
-   
-   background-image: url('images/parking.jpg');
-   background-repeat : no-repeat;
-   background-size: 100% 100%;
-   
+<% 
+String car_num = request.getParameter("car_num");
+parkDAO parkDAO = new parkDAO();
+String result = request.getParameter("resu");
+String cash = request.getParameter("cash");
+parkDAO.outstring(car_num);
 
-   text-shadow: black 0.2em 0.2em 0.2em;
-   color : white;
- }
-</style>
- <div class = "text-center jumbotron" >
- <p class="">입차 -> 출차 -> 계산 이순서대로 해주셔야됩니다.</p>
- <form action="./userJoinAction.jsp" method="post">
-입차할 차량번호를 입력해주세요. <input type = "text" name="car_num">
- <input class="btn btn-outline-primary my-2 my-sm-1" type="submit" value="차량번호등록">
- </form>
- 
-  <form action="./payment.jsp" method="post">
-계산할 차량번호를 입력해주세요. <input type = "text" name="car_num">
- <input type="submit" class="btn btn-outline-warning my-2 my-sm-1" value="차량번호등록">
- </form>
- 
- 
-  <form action="./userOutAction.jsp" method="post">
-출차할 차량번호를 입력해주세요. <input type = "text" name="car_num">
- <input type="submit" class="btn btn-outline-danger my-2 my-sm-1" value="차량번호등록">
- </form>
- </div>
+int resu = Integer.parseInt(result);
+int cash1 = Integer.parseInt(cash);
 
- <footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">
- Copyright &copy; 2020 HyunJong Lee All Rights Reserved.
- </footer>
- 
- <!-- 제이쿼리 자바스크립트 추가하기 -->
- <script src="./js/jquery.min.js"></script>
- <!-- 파퍼 자바스크립트 추가하기 -->
- <script src="./js/pooper.js"></script>
- <!-- 부트스트랩 자바스크립트 추가하기 -->
- <script src="./js/bootstrap.min.js"></script>
+int nokori = resu-cash1;
+
+%>
+  <div class="text-center">
+  <p class ="font-weight-bold">친환경 주차장을 이용해주셔서 감사합니다.</p>
+  <p class ="font-weight-bold text-primary">거스름돈은 <%=-nokori%>원 입니다.</p>
+	
+
+ <form action="index.jsp">
+ <input type="submit" class="btn btn-outline-warning my-2 my-sm-1" value="주차장으로 돌아가기">
+ </form>
+	</div>
  
 </body>
+<footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">
+ Copyright &copy; 2020 HyunJong Lee All Rights Reserved.
+ </footer>
 </html>
