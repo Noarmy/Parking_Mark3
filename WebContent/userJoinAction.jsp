@@ -41,12 +41,13 @@ int result = parkDAO.check(car_num);
 if(result == 1) {
 	   PrintWriter script = response.getWriter();
 	   script.println("<script>");
-	   script.println("alert('입차되어있거나 이미 등록된 차량번호입니다.');");
+	   script.println("alert('입차되어있거나 출차가되지않았습니다.');");
 	   script.println("history.back();");
 	   script.println("</script>");
 	   script.close();
 	   return;
 }
+
 
 
 int result1 = parkDAO.join(car_num,0);

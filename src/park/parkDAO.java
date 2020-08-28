@@ -36,7 +36,7 @@ public class parkDAO {
 	
 	//입차중복확인
 		public int check(String car_num) {
-			String SQL = "SELECT car_num FROM park WHERE out_time IS null and car_num = ?";
+			String SQL = "SELECT car_num FROM park WHERE payed = 0 and car_num = ?";
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
