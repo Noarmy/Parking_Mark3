@@ -21,11 +21,11 @@
    
    background-image: url('images/false.jpg');
    background-repeat : no-repeat;
-   background-size: 100% 100%;
-   
+   background-size: 40% 100%;
+   background-position : center;
 
-   text-shadow: white 0.2em 0.2em 0.2em;
-   color : #2c0eff;
+   text-shadow: blue 0.2em 0.2em 0.2em;
+   color : #ffde05;
  }
 </style>
  <div class = "text-center jumbotron font-weight-bold" >
@@ -68,8 +68,7 @@ if(check == 1) {
 	script.close();
 	return;
 	
-}
-
+}else
 if(result == 1) {
 	PrintWriter script = response.getWriter();
 	script.println("<script>");

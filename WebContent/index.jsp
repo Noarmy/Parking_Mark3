@@ -53,7 +53,7 @@
 </li>
 </ul>
 <formm class="form-inline my-2 my-lg-0">
- <input class="form-control mr-sm-2" type="Search" placeholder="입차후 출차를 하고 계산합시다" aria-label="Search">
+ <input class="form-control mr-sm-2" type="Search" placeholder="추후업데이트" aria-label="Search">
  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
 </formm>
 </div>
@@ -73,19 +73,20 @@
 </style>
  <div class = "text-center jumbotron" >
  <p class="">입차 -> 출차 -> 계산 이순서대로 해주셔야됩니다.</p>
+  <p class="">00x0000 <- 이 양식을 지켜서 입차및 출차 부탁드립니다.</p>
  <form action="./userJoinAction.jsp" method="post">
-입차할 차량번호를 입력해주세요. <input type = "text" name="car_num">
+입차할 차량번호를 입력해주세요. <input type = "text" name="car_num" pattern="(\d{2})([가-힣])(\d{4})">
  <input class="btn btn-outline-primary my-2 my-sm-1" type="submit" value="차량번호등록">
  </form>
  
   <form action="./payment.jsp" method="post">
-계산할 차량번호를 입력해주세요. <input type = "text" name="car_num">
+계산할 차량번호를 입력해주세요. <input type = "text" name="car_num" pattern="(\d{2})([가-힣])(\d{4})">
  <input type="submit" class="btn btn-outline-warning my-2 my-sm-1" value="차량번호등록">
  </form>
  
  
   <form action="./userOutAction.jsp" method="post">
-출차할 차량번호를 입력해주세요. <input type = "text" name="car_num">
+출차할 차량번호를 입력해주세요. <input type = "text" name="car_num" pattern="(\d{2})([가-힣])(\d{4})">
  <input type="submit" class="btn btn-outline-danger my-2 my-sm-1" value="차량번호등록">
  </form>
  </div>

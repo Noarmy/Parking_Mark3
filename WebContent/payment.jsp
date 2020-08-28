@@ -86,9 +86,6 @@ if(car_num == "") {
 parkDAO parkDAO = new parkDAO();
 int resu = parkDAO.park(car_num);
 
-
-
-
 if(resu == -1) {
 	PrintWriter script = response.getWriter();
 	script.println("<script>");
